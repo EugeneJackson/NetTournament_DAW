@@ -1,0 +1,3 @@
+usuario=root
+password=1234
+url=JDBC:mysql://localhost:3306/torneos_db
