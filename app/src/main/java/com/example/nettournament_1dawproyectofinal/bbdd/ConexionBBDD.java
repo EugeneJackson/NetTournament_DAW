@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-class ConexionBBDD {
+public class ConexionBBDD {
 
     private static Connection conexion;
 
