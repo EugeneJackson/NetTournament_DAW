@@ -45,4 +45,14 @@ public class Inscripcion {
     public void setFechaInscripcion(String fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Inscripcion{" +
+                "idInscripcion=" + idInscripcion +
+                ", idJugador=" + idJugador +
+                ", idTorneo=" + idTorneo +
+                ", fechaInscripcion='" + fechaInscripcion + '\'' +
+                '}';
+    }
 }

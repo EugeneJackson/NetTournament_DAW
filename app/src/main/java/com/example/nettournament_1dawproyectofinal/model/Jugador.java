@@ -45,4 +45,14 @@ public class Jugador {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Jugador{" +
+                "idJugador=" + idJugador +
+                ", nombre='" + nombre + '\'' +
+                ", apodo='" + apodo + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

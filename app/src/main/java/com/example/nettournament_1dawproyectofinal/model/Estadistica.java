@@ -75,4 +75,17 @@ public class Estadistica {
     public void setPuntosTotales(int puntosTotales) {
         this.puntosTotales = puntosTotales;
     }
+
+    @Override
+    public String toString() {
+        return "Estadistica{" +
+                "idEstadistica=" + idEstadistica +
+                ", idJugador=" + idJugador +
+                ", idTorneo=" + idTorneo +
+                ", partidosJugados=" + partidosJugados +
+                ", victorias=" + victorias +
+                ", derrotas=" + derrotas +
+                ", puntosTotales=" + puntosTotales +
+                '}';
+    }
 }
