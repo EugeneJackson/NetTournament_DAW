@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
                     etPassword.setError("La contraseña no puede estar vacía");
                 } else {
                     Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
