@@ -18,7 +18,11 @@ public class JugadorDAO implements IJugadorDAO{
 
     @Override
     public void insertar(Jugador player) {
-
+        try {
+            ConexionBBDD.getConexion(context);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
