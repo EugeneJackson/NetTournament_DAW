@@ -38,6 +38,7 @@ android {
 dependencies {
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
+    implementation(libs.cardview)
     implementation(libs.constraintlayout)
     implementation(libs.material)
     implementation(files("libs\\mysql-connector-java-5.1.49.jar"))

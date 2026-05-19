@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nettournament_1dawproyectofinal.dao.JugadorDAO;
+import com.example.nettournament_1dawproyectofinal.model.Jugador;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText etPassword = findViewById(R.id.etPassword);
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString().trim();
@@ -27,10 +31,39 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (password.isEmpty()) {
                     etPassword.setError("La contraseña no puede estar vacía");
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+                    Jugador nuevojugador = new Jugador();
+                    nuevojugador.setNombre(email);
+                    nuevojugador.setApodo(email);
+                    nuevojugador.setEmail(email);
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JugadorDAO jugadorDAO = new JugadorDAO(RegisterActivity.this);
+                                jugadorDAO.insertar(nuevojugador);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(RegisterActivity.this, "Error al conectar con la Base de Datos", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
                 }
             }
         });
