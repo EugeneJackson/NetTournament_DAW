@@ -6,10 +6,7 @@ public class Partido {
     private int idTorneo;
     private String estado;
 
-    public Partido(int idPartido, int idTorneo, String estado) {
-        this.idPartido = idPartido;
-        this.idTorneo = idTorneo;
-        this.estado = estado;
+    public Partido() {
     }
 
     public int getIdPartido() {

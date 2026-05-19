@@ -7,11 +7,7 @@ public class Inscripcion {
     private int idTorneo;
     private String fechaInscripcion;
 
-    public Inscripcion(int idInscripcion, int idJugador, int idTorneo, String fechaInscripcion) {
-        this.idInscripcion = idInscripcion;
-        this.idJugador = idJugador;
-        this.idTorneo = idTorneo;
-        this.fechaInscripcion = fechaInscripcion;
+    public Inscripcion() {
     }
 
     public int getIdInscripcion() {

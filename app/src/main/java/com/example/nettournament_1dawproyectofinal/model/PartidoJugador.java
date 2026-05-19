@@ -6,10 +6,7 @@ public class PartidoJugador {
     private int idPartido;
     private int idJugador;
 
-    public PartidoJugador(int idPartidoJugador, int idPartido, int idJugador) {
-        this.idPartidoJugador = idPartidoJugador;
-        this.idPartido = idPartido;
-        this.idJugador = idJugador;
+    public PartidoJugador() {
     }
 
     public int getIdPartidoJugador() {

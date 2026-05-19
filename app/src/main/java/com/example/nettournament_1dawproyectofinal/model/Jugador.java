@@ -7,11 +7,8 @@ public class Jugador {
     private String apodo;
     private String email;
 
-    public Jugador(int idJugador, String nombre, String apodo, String email) {
-        this.idJugador = idJugador;
-        this.nombre = nombre;
-        this.apodo = apodo;
-        this.email = email;
+
+    public Jugador() {
     }
 
     public int getIdJugador() {

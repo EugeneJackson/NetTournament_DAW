@@ -4,16 +4,11 @@ public class Resultado {
 
     private int idResultado;
     private int idPartido;
-    private int idGanador;
+    private int idJugador;
     private int puntos;
     private boolean ganador;
 
-    public Resultado(int idResultado, int idPartido, int idGanador, int puntos, boolean ganador) {
-        this.idResultado = idResultado;
-        this.idPartido = idPartido;
-        this.idGanador = idGanador;
-        this.puntos = puntos;
-        this.ganador = ganador;
+    public Resultado() {
     }
 
     public int getIdResultado() {
@@ -32,12 +27,12 @@ public class Resultado {
         this.idPartido = idPartido;
     }
 
-    public int getIdGanador() {
-        return idGanador;
+    public int getIdJugador() {
+        return idJugador;
     }
 
-    public void setIdGanador(int idGanador) {
-        this.idGanador = idGanador;
+    public void setIdJugador(int idJugador) {
+        this.idJugador = idJugador;
     }
 
     public int getPuntos() {
@@ -61,7 +56,7 @@ public class Resultado {
         return "Resultado{" +
                 "idResultado=" + idResultado +
                 ", idPartido=" + idPartido +
-                ", idGanador=" + idGanador +
+                ", idJugador=" + idJugador +
                 ", puntos=" + puntos +
                 ", ganador=" + ganador +
                 '}';

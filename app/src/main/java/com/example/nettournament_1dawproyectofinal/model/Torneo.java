@@ -8,12 +8,7 @@ public class Torneo {
     private String estado;
     private String fecha_inicio;
 
-    public Torneo(int idTorneo, String nombre, String tipo, String estado, String fecha_inicio) {
-        this.idTorneo = idTorneo;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.estado = estado;
-        this.fecha_inicio = fecha_inicio;
+    public Torneo() {
     }
 
     public int getIdTorneo() {
