@@ -7,11 +7,8 @@ public class Jugador {
     private String apodo;
     private String email;
 
-    public Jugador(int idJugador, String nombre, String apodo, String email) {
-        this.idJugador = idJugador;
-        this.nombre = nombre;
-        this.apodo = apodo;
-        this.email = email;
+
+    public Jugador() {
     }
 
     public int getIdJugador() {
@@ -44,5 +41,15 @@ public class Jugador {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" +
+                "idJugador=" + idJugador +
+                ", nombre='" + nombre + '\'' +
+                ", apodo='" + apodo + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

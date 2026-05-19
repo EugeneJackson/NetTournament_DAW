@@ -4,18 +4,11 @@ public class Torneo {
 
     private int idTorneo;
     private String nombre;
-    private String juego;
-    private String tipoCompeticion;
+    private String tipo;
     private String estado;
     private String fecha_inicio;
 
-    public Torneo(int idTorneo, String nombre, String juego, String tipoCompeticion, String estado, String fecha_inicio) {
-        this.idTorneo = idTorneo;
-        this.nombre = nombre;
-        this.juego = juego;
-        this.tipoCompeticion = tipoCompeticion;
-        this.estado = estado;
-        this.fecha_inicio = fecha_inicio;
+    public Torneo() {
     }
 
     public int getIdTorneo() {
@@ -34,20 +27,12 @@ public class Torneo {
         this.nombre = nombre;
     }
 
-    public String getJuego() {
-        return juego;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setJuego(String juego) {
-        this.juego = juego;
-    }
-
-    public String getTipoCompeticion() {
-        return tipoCompeticion;
-    }
-
-    public void setTipoCompeticion(String tipoCompeticion) {
-        this.tipoCompeticion = tipoCompeticion;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getEstado() {
@@ -64,5 +49,16 @@ public class Torneo {
 
     public void setFecha_inicio(String fecha_inicio) {
         this.fecha_inicio = fecha_inicio;
+    }
+
+    @Override
+    public String toString() {
+        return "Torneo{" +
+                "idTorneo=" + idTorneo +
+                ", nombre='" + nombre + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", estado='" + estado + '\'' +
+                ", fecha_inicio='" + fecha_inicio + '\'' +
+                '}';
     }
 }

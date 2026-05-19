@@ -4,16 +4,11 @@ public class Resultado {
 
     private int idResultado;
     private int idPartido;
-    private int puntuacionJ1;
-    private int puntuacionJ2;
-    private int idGanador;
+    private int idJugador;
+    private int puntos;
+    private boolean ganador;
 
-    public Resultado(int idResultado, int idPartido, int puntuacionJ1, int puntuacionJ2, int idGanador) {
-        this.idResultado = idResultado;
-        this.idPartido = idPartido;
-        this.puntuacionJ1 = puntuacionJ1;
-        this.puntuacionJ2 = puntuacionJ2;
-        this.idGanador = idGanador;
+    public Resultado() {
     }
 
     public int getIdResultado() {
@@ -32,27 +27,38 @@ public class Resultado {
         this.idPartido = idPartido;
     }
 
-    public int getPuntuacionJ1() {
-        return puntuacionJ1;
+    public int getIdJugador() {
+        return idJugador;
     }
 
-    public void setPuntuacionJ1(int puntuacionJ1) {
-        this.puntuacionJ1 = puntuacionJ1;
+    public void setIdJugador(int idJugador) {
+        this.idJugador = idJugador;
     }
 
-    public int getPuntuacionJ2() {
-        return puntuacionJ2;
+    public int getPuntos() {
+        return puntos;
     }
 
-    public void setPuntuacionJ2(int puntuacionJ2) {
-        this.puntuacionJ2 = puntuacionJ2;
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 
-    public int getIdGanador() {
-        return idGanador;
+    public boolean isGanador() {
+        return ganador;
     }
 
-    public void setIdGanador(int idGanador) {
-        this.idGanador = idGanador;
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
+    }
+
+    @Override
+    public String toString() {
+        return "Resultado{" +
+                "idResultado=" + idResultado +
+                ", idPartido=" + idPartido +
+                ", idJugador=" + idJugador +
+                ", puntos=" + puntos +
+                ", ganador=" + ganador +
+                '}';
     }
 }
