@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvConfirmacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Estás seguro de que deseas inscribirte en este torneo?"
+        android:textSize="20sp"
+        android:textAlign="center"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnConfirmarInscripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Plaza"
+        android:textSize="16sp"/>
+</LinearLayout>

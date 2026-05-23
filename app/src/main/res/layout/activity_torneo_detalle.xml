@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvNombreTorneo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del Torneo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvJuego"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Videojuego: "
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha: "
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvPlazas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Plazas: 0 / 0"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnInscribirse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inscribirse al Torneo"
+        android:textSize="16sp"/>
+</LinearLayout>
