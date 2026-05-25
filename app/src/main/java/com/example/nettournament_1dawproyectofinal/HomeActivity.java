@@ -1,6 +1,8 @@
 package com.example.nettournament_1dawproyectofinal;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
     private EditText etBuscar;
     private Button btnCrearTorneoHome;
+    private android.widget.ImageButton btnCerrarSesion;
     private RecyclerView rvTorneos;
     private TorneoAdapter torneoAdapter;
     private TorneoController torneoController;
@@ -42,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         torneoController = new TorneoController(HomeActivity.this);
         etBuscar = findViewById(R.id.etBuscar);
         btnCrearTorneoHome = findViewById(R.id.btnCrearTorneoHome);
-
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         rvTorneos = findViewById(R.id.rvTorneos);
         rvTorneos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -52,6 +55,20 @@ public class HomeActivity extends AppCompatActivity {
         cargarTorneosDesdeBD();
 
         btnCrearTorneoHome.setOnClickListener(v -> mostrarDialogoCrearTorneo());
+
+        btnCerrarSesion.setOnClickListener(v -> {
+            new AlertDialog.Builder(HomeActivity.this)
+                    .setTitle("Cerrar Sesión")
+                    .setMessage("¿Seguro que quieres cerrar sesión?")
+                    .setPositiveButton("Cerrar sesión", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            procederCerrarSesion();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        });
 
         if (etBuscar != null) {
             etBuscar.addTextChangedListener(new android.text.TextWatcher() {
@@ -106,6 +123,12 @@ public class HomeActivity extends AppCompatActivity {
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(HomeActivity.this, "Error de red al cargar el tablón", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         }).start();
@@ -173,5 +196,17 @@ public class HomeActivity extends AppCompatActivity {
 
         builder.setNegativeButton("Cancelar", null);
         builder.show();
+    }
+
+    private void procederCerrarSesion() {
+        SharedPreferences prefs = getSharedPreferences("NetTournamentPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("usuarioLogeado", false);
+        editor.apply();
+
+        Toast.makeText(HomeActivity.this, "Sesión cerrada correctamente", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

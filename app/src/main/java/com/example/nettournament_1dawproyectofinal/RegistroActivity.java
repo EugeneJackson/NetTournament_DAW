@@ -1,6 +1,7 @@
 package com.example.nettournament_1dawproyectofinal;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,8 @@ public class RegistroActivity extends AppCompatActivity {
 
                 if (email.isEmpty()) {
                     etEmail.setError("El correo no puede estar vacío");
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    etEmail.setError("Introduce un correo electrónico válido (ejemplo@dominio.com)");
                 } else if (usuario.isEmpty()) {
                     etUsuario.setError("El apodo no puede estar vacío");
                 } else if (contraseña.isEmpty()) {
@@ -49,12 +52,17 @@ public class RegistroActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         if (registroExitoso) {
+                                            SharedPreferences prefs = getSharedPreferences("NetTournamentPrefs", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = prefs.edit();
+                                            editor.putBoolean("usuarioLogeado", true);
+                                            editor.apply();
+
                                             Toast.makeText(RegistroActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(RegistroActivity.this, HomeActivity.class);
                                             startActivity(intent);
                                             finish();
                                         } else {
-                                            Toast.makeText(RegistroActivity.this, "Error al guardar en la BBDD", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegistroActivity.this, "Error al guardar en la BBDD (Datos inválidos o duplicados)", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

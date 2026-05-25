@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <ImageButton
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/cerrarsesion"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#212121"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/tvTituloTablon"
         android:layout_width="wrap_content"
