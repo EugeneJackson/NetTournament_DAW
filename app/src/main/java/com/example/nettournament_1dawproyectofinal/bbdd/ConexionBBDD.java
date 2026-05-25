@@ -22,7 +22,7 @@ public class ConexionBBDD {
             String url = br.readLine().split("=")[1];
             br.close();
 
-
+            Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection(url, usuario, password);
         }
         return conexion;

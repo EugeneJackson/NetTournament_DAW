@@ -123,4 +123,17 @@ public class JugadorDAO implements IJugadorDAO{
         }
         return playerList;
     }
+    public boolean verificarCredenciales(String email, String password) throws Exception {
+        String sql = "SELECT * FROM jugadores WHERE email = ? AND contraseña = ?";
+        try (Connection con = ConexionBBDD.getConexion(context);
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
 }

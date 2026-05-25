@@ -18,48 +18,59 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //controlador
         jugadorController = new JugadorController(RegistroActivity.this);
 
         final EditText etEmail = findViewById(R.id.etEmail);
         final EditText etPassword = findViewById(R.id.etPassword);
+        final EditText etUsuario = findViewById(R.id.etUsuario);
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
 
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
+                String usuario = etUsuario.getText().toString().trim();
+                String contraseña = etPassword.getText().toString().trim();
 
                 if (email.isEmpty()) {
                     etEmail.setError("El correo no puede estar vacío");
-                } else if (password.isEmpty()) {
+                } else if (usuario.isEmpty()) {
+                    etUsuario.setError("El apodo no puede estar vacío");
+                } else if (contraseña.isEmpty()) {
                     etPassword.setError("La contraseña no puede estar vacía");
                 } else {
-                    jugadorController.registrarJugador(email, new JugadorController.OnRegistroListener() {
-                        @Override
-                        public void onSuccess() {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(RegistroActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(RegistroActivity.this, HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            });
-                        }
 
+                    new Thread(new Runnable() {
                         @Override
-                        public void onError(Exception e) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(RegistroActivity.this, "Error al conectar con la Base de Datos", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                        public void run() {
+                            try {
+                                boolean registroExitoso = jugadorController.registrarJugador(usuario, contraseña, email);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (registroExitoso) {
+                                            Toast.makeText(RegistroActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(RegistroActivity.this, HomeActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(RegistroActivity.this, "Error al guardar en la BBDD", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(RegistroActivity.this, "Error de conexión con el servidor", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
-                    });
+                    }).start();
+
                 }
             }
         });

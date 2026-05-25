@@ -15,30 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NetTournament_1DAWProyectoFinal"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".PartidosTorneoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilJugadorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".InscripcionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".RegistroActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".PartidosTorneoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TorneoDetalleActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
