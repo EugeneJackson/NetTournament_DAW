@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView rvTorneos;
     private TorneoAdapter torneoAdapter;
     private TorneoController torneoController;
+    private List<Torneo> listaTorneosCompleta = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,35 @@ public class HomeActivity extends AppCompatActivity {
         cargarTorneosDesdeBD();
 
         btnCrearTorneoHome.setOnClickListener(v -> mostrarDialogoCrearTorneo());
+
+        if (etBuscar != null) {
+            etBuscar.addTextChangedListener(new android.text.TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    String textoBuscado = s.toString().trim().toLowerCase();
+
+                    if (textoBuscado.isEmpty()) {
+                        torneoAdapter.actualizarLista(listaTorneosCompleta);
+                        return;
+                    }
+                    List<Torneo> listaFiltrada = new ArrayList<>();
+
+                    for (Torneo torneo : listaTorneosCompleta) {
+                        if (torneo.getNombre() != null && torneo.getNombre().toLowerCase().contains(textoBuscado)) {
+                            listaFiltrada.add(torneo);
+                        }
+                    }
+
+                    torneoAdapter.actualizarLista(listaFiltrada);
+                }
+
+                @Override
+                public void afterTextChanged(android.text.Editable s) {}
+            });
+        }
     }
 
     @Override
@@ -69,6 +99,7 @@ public class HomeActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (lista != null) {
+                                listaTorneosCompleta = lista;
                                 torneoAdapter.actualizarLista(lista);
                             }
                         }
