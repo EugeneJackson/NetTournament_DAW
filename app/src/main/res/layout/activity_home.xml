@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/torneos"
+        android:text="Torneos"
         android:textColor="#212121"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:hint="@string/buscar_torneo"
+            android:hint="Buscar torneo..."
             android:inputType="text"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
@@ -47,84 +47,17 @@
             android:textSize="15sp" />
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardTorneo1"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTorneos"
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="3dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardBuscador">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#B2E9B3"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/torneo_valorant"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Plazas: 14 / 20 - Faltan 3 horas"
-                android:textColor="#666666"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardTorneo2"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="3dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnCrearTorneoHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardTorneo1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FBEC89"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/torneo_league_of_legends"
-                android:textColor="#212121"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Plazas: 10 / 30 - Faltan 30 minutos"
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@id/cardBuscador"
+        tools:listitem="@layout/item_torneo" />
 
     <Button
         android:id="@+id/btnCrearTorneoHome"
@@ -134,7 +67,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#1E88E5"
-        android:text="@string/crear_nuevo_torneo"
+        android:text="Crear Nuevo Torneo"
         android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="12dp"
