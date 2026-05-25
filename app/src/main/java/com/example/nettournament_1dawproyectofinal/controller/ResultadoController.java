@@ -2,7 +2,6 @@ package com.example.nettournament_1dawproyectofinal.controller;
 
 import android.content.Context;
 
-import com.example.nettournament_1dawproyectofinal.dao.PartidoDAO;
 import com.example.nettournament_1dawproyectofinal.dao.ResultadoDAO;
 import com.example.nettournament_1dawproyectofinal.model.Resultado;
 

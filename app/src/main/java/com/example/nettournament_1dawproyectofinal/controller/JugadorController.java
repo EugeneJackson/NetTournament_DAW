@@ -31,7 +31,7 @@ public class JugadorController {
         }
     }
 
-    public Jugador obtenerJugador(int idJugador) {
+    public Jugador obtenerJugadorPorId(int idJugador) {
         return jugadorDAO.buscarPorId(idJugador);
     }
 
