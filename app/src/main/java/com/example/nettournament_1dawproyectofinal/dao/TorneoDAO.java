@@ -83,7 +83,7 @@ public class TorneoDAO implements ITorneoDAO {
             ps.setInt(1, idTorneo);
             ResultSet rs = ps.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 Torneo torneoObj = new Torneo();
                 torneoObj.setIdTorneo(rs.getInt("id_torneo"));
                 torneoObj.setNombre(rs.getString("nombre"));
@@ -109,7 +109,7 @@ public class TorneoDAO implements ITorneoDAO {
             );
 
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Torneo torneoObj = new Torneo();
                 torneoObj.setIdTorneo(rs.getInt("id_torneo"));
                 torneoObj.setNombre(rs.getString("nombre"));
@@ -123,5 +123,21 @@ public class TorneoDAO implements ITorneoDAO {
             throw new RuntimeException(e);
         }
         return torneoList;
+    }
+
+    public void insertarInscripcion(int idJugador, int idTorneo) {
+        try {
+            Connection con = ConexionBBDD.getConexion(context);
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO inscripciones (id_jugador, id_torneo, fecha_inscripcion) VALUES (?, ?, CURDATE())"
+            );
+
+            ps.setInt(1, idJugador);
+            ps.setInt(2, idTorneo);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

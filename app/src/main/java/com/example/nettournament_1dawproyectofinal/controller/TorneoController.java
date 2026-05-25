@@ -61,4 +61,13 @@ public class TorneoController {
             return false;
         }
     }
+    public boolean inscribirJugador(int idJugador, int idTorneo) {
+        try {
+            torneoDAO.insertarInscripcion(idJugador, idTorneo);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

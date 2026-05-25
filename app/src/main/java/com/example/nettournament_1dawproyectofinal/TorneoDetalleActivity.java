@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.nettournament_1dawproyectofinal.controller.TorneoController;
 
@@ -15,7 +16,7 @@ public class TorneoDetalleActivity extends AppCompatActivity {
 
     private TorneoController torneoController;
     private TextView tvNombreTorneo, tvJuego, tvFecha, tvHora, tvEstado;
-    private Button btnInscribirse;
+    private Button btnInscribirse, btnEliminarTorneo;
     private SharedPreferences prefs;
     private int idTorneo = 1;
     private String estadoTorneoText = "Abierto";
@@ -34,6 +35,7 @@ public class TorneoDetalleActivity extends AppCompatActivity {
         tvHora = findViewById(R.id.tvHora);
         tvEstado = findViewById(R.id.tvEstado);
         btnInscribirse = findViewById(R.id.btnInscribirse);
+        btnEliminarTorneo = findViewById(R.id.btnEliminarTorneo);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -71,6 +73,39 @@ public class TorneoDetalleActivity extends AppCompatActivity {
             if (tvHora != null) tvHora.setText("Hora de inicio: " + horaLimpia + " hs");
 
             configurarBotonSegunEstado(nombre);
+        }
+        if (btnEliminarTorneo != null) {
+            btnEliminarTorneo.setOnClickListener(v -> {
+                new AlertDialog.Builder(TorneoDetalleActivity.this)
+                        .setTitle("¿Eliminar torneo?")
+                        .setMessage("Esta acción borrará el torneo de forma permanente.")
+                        .setPositiveButton("Sí, eliminar", (dialog, which) -> {
+
+                            btnEliminarTorneo.setEnabled(false);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    boolean eliminadoCorrectamente = torneoController.eliminarTorneo(idTorneo);
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            btnEliminarTorneo.setEnabled(true);
+                                            if (eliminadoCorrectamente) {
+                                                Toast.makeText(TorneoDetalleActivity.this, "Torneo eliminado correctamente", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            } else {
+                                                Toast.makeText(TorneoDetalleActivity.this, "Error de red: No se pudo eliminar el registro", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            }).start();
+
+                        })
+                        .setNegativeButton("Cancelar", null)
+                        .show();
+            });
         }
     }
 
@@ -116,13 +151,33 @@ public class TorneoDetalleActivity extends AppCompatActivity {
                 btnInscribirse.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#1E88E5")));
 
                 btnInscribirse.setOnClickListener(v -> {
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean("inscrito_" + nombreTorneo, true);
-                    editor.apply();
+                    btnInscribirse.setEnabled(false);
 
-                    Toast.makeText(TorneoDetalleActivity.this, "Inscripción realizada con éxito", Toast.LENGTH_SHORT).show();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            SharedPreferences loginPrefs = getSharedPreferences("NetTournamentPrefs", MODE_PRIVATE);
+                            int idJugadorLogeado = loginPrefs.getInt("idUsuarioActivo", 1);
+                            boolean insertCorrecto = torneoController.inscribirJugador(idJugadorLogeado, idTorneo);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    btnInscribirse.setEnabled(true);
 
-                    configurarBotonSegunEstado(nombreTorneo);
+                                    if (insertCorrecto) {
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putBoolean("inscrito_" + nombreTorneo, true);
+                                        editor.apply();
+
+                                        Toast.makeText(TorneoDetalleActivity.this, "Inscripción guardada con éxito en la base de datos", Toast.LENGTH_SHORT).show();
+                                        configurarBotonSegunEstado(nombreTorneo);
+                                    } else {
+                                        Toast.makeText(TorneoDetalleActivity.this, "Error de red: No se pudo registrar en la BBDD", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }).start();
                 });
             }
         }
