@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">NetTournament_1DAWProyectoFinal</string>
+    <string name="torneos">Torneos</string>
+    <string name="torneo_valorant">Torneo Valorant</string>
+    <string name="inscripciones_abiertas_plazas_14_16">Inscripciones Abiertas - Plazas: 14 / 16</string>
+    <string name="torneo_league_of_legends">Torneo League of Legends</string>
+    <string name="en_curso_fase_de_grupos">En Curso - Fase de Grupos</string>
+    <string name="crear_nuevo_torneo">+ Crear Nuevo Torneo</string>
+    <string name="buscar_torneo">Buscar torneo</string>
+    <string name="reg_strate">Regístrate</string>
+    <string name="correo_electr_nico">Correo electrónico</string>
 </resources>

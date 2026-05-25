@@ -10,14 +10,7 @@ public class Estadistica {
     private int derrotas;
     private int puntosTotales;
 
-    public Estadistica(int idEstadistica, int idJugador, int idTorneo, int partidosJugados, int victorias, int derrotas, int puntosTotales) {
-        this.idEstadistica = idEstadistica;
-        this.idJugador = idJugador;
-        this.idTorneo = idTorneo;
-        this.partidosJugados = partidosJugados;
-        this.victorias = victorias;
-        this.derrotas = derrotas;
-        this.puntosTotales = puntosTotales;
+    public Estadistica() {
     }
 
     public int getIdEstadistica() {
