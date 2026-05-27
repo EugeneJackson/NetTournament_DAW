@@ -32,6 +32,8 @@ public class JugadorDAO implements IJugadorDAO{
             ps.setString(3, player.getEmail());
             ps.executeUpdate();
 
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -51,6 +53,9 @@ public class JugadorDAO implements IJugadorDAO{
             ps.setString(3, player.getEmail());
             ps.setInt(4, player.getIdJugador());
             ps.executeUpdate();
+
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -65,6 +70,9 @@ public class JugadorDAO implements IJugadorDAO{
             );
             ps.setInt(1, playerId);
             ps.executeUpdate();
+
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -88,6 +96,9 @@ public class JugadorDAO implements IJugadorDAO{
                 playerObj.setEmail(rs.getString("email"));
                 return playerObj;
             }
+
+            ps.close();
+            rs.close();
 
 
         } catch (Exception e) {
@@ -117,6 +128,9 @@ public class JugadorDAO implements IJugadorDAO{
 
                 playerList.add(playerObj);
             }
+
+            ps.close();
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);

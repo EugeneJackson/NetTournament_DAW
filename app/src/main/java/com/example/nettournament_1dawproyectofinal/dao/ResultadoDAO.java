@@ -35,6 +35,8 @@ public class ResultadoDAO implements IResultadoDAO{
 
             ps.executeUpdate();
 
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -50,6 +52,9 @@ public class ResultadoDAO implements IResultadoDAO{
 
             ps.setInt(1, idResultado);
             ps.executeUpdate();
+
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -80,6 +85,9 @@ public class ResultadoDAO implements IResultadoDAO{
 
                 resultadoList.add(resultObj);
             }
+
+            ps.close();
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -112,6 +120,9 @@ public class ResultadoDAO implements IResultadoDAO{
 
                 jugadorQueryList.add(resultObj);
             }
+
+            ps.close();
+            rs.close();
 
 
         } catch (Exception e) {
