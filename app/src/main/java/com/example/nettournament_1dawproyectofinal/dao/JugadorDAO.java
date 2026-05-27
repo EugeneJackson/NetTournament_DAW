@@ -97,14 +97,12 @@ public class JugadorDAO implements IJugadorDAO{
     }
 
     @Override
-    public List<Jugador> buscarTodos() {
+    public List<Jugador> buscarTodos()  {
         List<Jugador> playerList = new ArrayList<>();
 
-        try {
-            Connection con = ConexionBBDD.getConexion(context);
-            PreparedStatement ps = con.prepareStatement(
-              "SELECT * FROM jugadores"
-            );
+        try (Connection con = ConexionBBDD.getConexion(context);
+             PreparedStatement ps = con.prepareStatement("SELECT * FROM jugadores");
+            ){
 
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
@@ -117,7 +115,7 @@ public class JugadorDAO implements IJugadorDAO{
 
                 playerList.add(playerObj);
             }
-
+            rs.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
