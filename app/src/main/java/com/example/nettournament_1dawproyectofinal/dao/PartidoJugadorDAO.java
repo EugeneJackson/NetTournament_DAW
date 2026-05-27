@@ -64,7 +64,7 @@ public class PartidoJugadorDAO implements IPartidoJugadorDAO{
         try {
             Connection con = ConexionBBDD.getConexion(context);
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM partidos_jugadores WHERE id = ?"
+                    "SELECT * FROM partidos_jugadores WHERE id_partido = ?"
             );
 
             ps.setInt(1, idPartido);

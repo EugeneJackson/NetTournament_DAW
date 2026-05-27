@@ -32,6 +32,8 @@ public class TorneoDAO implements ITorneoDAO {
             ps.setString(4, torneo.getFecha_inicio());
             ps.executeUpdate();
 
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +48,10 @@ public class TorneoDAO implements ITorneoDAO {
             );
 
             ps.setInt(1, idTorneo);
+
             ps.executeUpdate();
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -66,6 +71,7 @@ public class TorneoDAO implements ITorneoDAO {
             ps.setString(4, torneo.getFecha_inicio());
             ps.setInt(5, torneo.getIdTorneo());
             ps.executeUpdate();
+            ps.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -93,6 +99,9 @@ public class TorneoDAO implements ITorneoDAO {
                 return torneoObj;
             }
 
+            ps.close();
+            rs.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -119,6 +128,9 @@ public class TorneoDAO implements ITorneoDAO {
 
                 torneoList.add(torneoObj);
             }
+
+            ps.close();
+            rs.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

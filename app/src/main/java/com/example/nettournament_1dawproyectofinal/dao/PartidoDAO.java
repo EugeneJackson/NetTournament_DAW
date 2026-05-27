@@ -30,6 +30,9 @@ public class PartidoDAO implements IPartidoDAO{
             ps.setString(2, partido.getEstado());
 
             ps.executeUpdate();
+
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +52,8 @@ public class PartidoDAO implements IPartidoDAO{
 
             ps.executeUpdate();
 
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -64,6 +69,8 @@ public class PartidoDAO implements IPartidoDAO{
 
             ps.setInt(1, idPartido);
             ps.executeUpdate();
+
+            ps.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -89,6 +96,9 @@ public class PartidoDAO implements IPartidoDAO{
 
                 return partidoObj;
             }
+
+            ps.close();
+            rs.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -118,6 +128,9 @@ public class PartidoDAO implements IPartidoDAO{
 
                 partidoList.add(partidoObj);
             }
+
+            ps.close();
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);

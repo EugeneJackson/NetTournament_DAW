@@ -34,6 +34,9 @@ public class InscripcionDAO implements IInscripcionDAO{
 
             ps.executeUpdate();
 
+            ps.close();
+
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +52,7 @@ public class InscripcionDAO implements IInscripcionDAO{
 
             ps.setInt(1, idInscripcion);
             ps.executeUpdate();
+            ps.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +80,9 @@ public class InscripcionDAO implements IInscripcionDAO{
                 return inscripcionObj;
 
             }
+
+            ps.close();
+            rs.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -108,6 +115,9 @@ public class InscripcionDAO implements IInscripcionDAO{
 
             }
 
+            ps.close();
+            rs.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -138,6 +148,9 @@ public class InscripcionDAO implements IInscripcionDAO{
 
                 jugadorInscritoList.add(inscripcionObj);
             }
+
+            ps.close();
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
