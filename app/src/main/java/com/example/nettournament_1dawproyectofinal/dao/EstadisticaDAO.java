@@ -38,6 +38,8 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
             ps.executeUpdate();
 
+            ps.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -61,6 +63,7 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
             ps.executeUpdate();
 
+            ps.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -96,6 +99,7 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
             }
 
+            ps.close();
             rs.close();
 
         } catch (Exception e) {
@@ -133,6 +137,7 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
             }
 
+            ps.close();
             rs.close();
 
         } catch (Exception e) {
@@ -166,6 +171,9 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
                 return estadisticaObj;
             }
+
+            ps.close();
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
