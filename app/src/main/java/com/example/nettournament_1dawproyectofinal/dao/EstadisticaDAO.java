@@ -96,6 +96,8 @@ public class EstadisticaDAO implements IEstadisticaDAO{
 
             }
 
+            rs.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -130,6 +132,8 @@ public class EstadisticaDAO implements IEstadisticaDAO{
                 torneoQueryList.add(estadisticaObj);
 
             }
+
+            rs.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);

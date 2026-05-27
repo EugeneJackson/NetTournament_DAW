@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS torneos_db;
-CREATE DATABASE torneos_db;
-USE torneos_db;
+DROP DATABASE IF EXISTS nettournament;
+CREATE DATABASE nettournament;
+USE nettournament;
 
 CREATE TABLE jugadores (
     id_jugador INT AUTO_INCREMENT PRIMARY KEY,
@@ -62,3 +62,12 @@ CREATE TABLE estadisticas (
     FOREIGN KEY (id_jugador) REFERENCES jugadores(id_jugador),
     FOREIGN KEY (id_torneo) REFERENCES torneos(id_torneo)
 );
+
+CREATE USER 'nettournament'@'%'
+IDENTIFIED BY '1234!';
+
+GRANT ALL PRIVILEGES
+ON NetTournament.*
+TO 'nettournament'@'%';
+
+FLUSH PRIVILEGES;
